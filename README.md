@@ -1,59 +1,92 @@
-# SignalFormsDemo
+# Angular Signal Forms Lab
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.13.
+An interactive demo app showcasing the experimental **Signal Forms** API (`@angular/forms/signals`) introduced in Angular 21. Each route is a self-contained example that can be used for reference snippet.
 
-## Development server
+## Stack
 
-To start a local development server, run:
+- **Angular 21** with standalone components and `ChangeDetectionStrategy.OnPush` throughout
+- **`@angular/forms/signals`** — the experimental signal-based forms API
+- **Tailwind CSS v4** for styling
+- **Vitest** for unit tests
+
+## Running locally
 
 ```bash
-ng serve
+pnpm install
+pnpm start        # ng serve → http://localhost:4200
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Examples
 
-## Code scaffolding
+| Route | What it shows |
+|---|---|
+| `/login-basics` | Signal model + `form()` + `[formField]` binding |
+| `/built-in-validation` | `required`, `email`, `minLength`, `maxLength`, `min`, `max`, `pattern` |
+| `/custom-validator` | Writing a custom `validate()` rule |
+| `/field-logic` | `disabled()`, `hidden()`, `readonly()` reactive rules |
+| `/password-match` | Cross-field validation reading a sibling value |
+| `/budget-allocation` | Group validation with `validateTree()` |
+| `/reusable-schema` | Composable schemas with `schema()` + `apply()` |
+| `/conditional-schema` | Switching required fields on a union with `applyWhenValue()` |
+| `/array-items` | Per-item rules on growing arrays with `applyEach()` |
+| `/async-username` | Async availability check with `validateAsync()` |
+| `/metadata-hints` | Reactive helper text via `metadata()` |
+| `/custom-control` | A component implementing `FormValueControl<T>` |
+| `/submission` | `FormRoot` + `submit()` + submitting state |
+| `/server-errors` | Attaching server errors to specific fields |
+| `/nested-components` | One form split across three child components via `FieldTree<T>` inputs |
+| `/compat-form` | Bridging a `FormControl` into a signal form with `compatForm()` |
+| `/signal-form-control` | Dropping a `SignalFormControl` into an existing `FormGroup` |
+| `/template-migration` | Side-by-side: `ngModel` → signal model |
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Project structure
 
-```bash
-ng generate component component-name
+```
+src/app/
+├── examples/
+│   ├── nested-components.component.ts   ← root page for the nested-components example
+│   ├── nested-components/
+│   │   ├── personal-section.component.ts
+│   │   ├── address-section.component.ts
+│   │   └── account-section.component.ts
+│   ├── demo-utils.ts                    ← shared errorMessage helper
+│   └── *.component.ts                   ← one file per example
+├── app.routes.ts                        ← lazy-loaded routes
+├── demo-nav.ts                          ← sidebar nav metadata
+└── app.ts / app.html                    ← shell
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Key API surface
 
-```bash
-ng generate --help
+```ts
+// Create a form from a signal model
+const myForm = form(myModel, (path) => {
+  required(path.name);
+  email(path.email);
+  minLength(path.password, 8);
+});
+
+// Bind in the template
+<input [formField]="myForm.email" />
+
+// Read reactive state
+myForm.email().valid()
+myForm.email().errors()
+myForm().valid()
+
+// Pass a section to a child component
+readonly section = input.required<FieldTree<AddressInfo>>();
+<input [formField]="section().street" />
 ```
 
 ## Building
 
-To build the project run:
-
 ```bash
-ng build
+pnpm run build    # production build → dist/
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Tests
 
 ```bash
-ng test
+pnpm test         # vitest
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
