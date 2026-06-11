@@ -144,4 +144,13 @@ export const DEMO_NAV: DemoNavItem[] = [
     summary: 'The same form shown with ngModel first, then signal model plus schema.',
     accent: 'from-purple-500 to-sky-600',
   },
+  {
+    path: '/nested-components',
+    title: 'Nested components with FieldTree',
+    shortTitle: 'Nested components',
+    eyebrow: 'Components',
+    summary:
+      'One form split across three child components, each receiving a typed FieldTree<T> input.',
+    accent: 'from-violet-500 to-fuchsia-600',
+  },
 ];
