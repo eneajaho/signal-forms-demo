@@ -1,6 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { FormField, FormRoot, form as signalForm, minLength, required } from '@angular/forms/signals';
+import { FormField, FormRoot, form, minLength, required } from '@angular/forms/signals';
 import { errorMessage, wait } from './demo-utils';
 
 @Component({
@@ -23,7 +23,11 @@ import { errorMessage, wait } from './demo-utils';
         <form class="demo-panel grid gap-5" [formRoot]="registrationForm">
           <label class="grid gap-2">
             <span class="demo-label">Username</span>
-            <input class="demo-input" placeholder="try enea, admin, or a new name" [formField]="registrationForm.username" />
+            <input
+              class="demo-input"
+              placeholder="try enea, admin, or a new name"
+              [formField]="registrationForm.username"
+            />
             @if (registrationForm.username().touched()) {
               @for (error of registrationForm.username().errors(); track $index) {
                 <span class="demo-error">{{ message(error) }}</span>
@@ -71,7 +75,8 @@ export class ServerErrorsComponent {
   protected readonly reservedNamesText = [...this.reservedNames].join(', ');
   protected readonly result = signal('Submit a reserved username to see a server error.');
   protected readonly registrationModel = signal({ username: 'enea', password: 'password123' });
-  protected readonly registrationForm = signalForm(
+
+  protected readonly registrationForm = form(
     this.registrationModel,
     (path) => {
       required(path.username, { message: 'Username is required.' });
