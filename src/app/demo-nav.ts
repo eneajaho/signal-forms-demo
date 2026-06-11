@@ -1,0 +1,147 @@
+export interface DemoNavItem {
+  path: string;
+  title: string;
+  shortTitle: string;
+  eyebrow: string;
+  summary: string;
+  accent: string;
+}
+
+export const DEMO_NAV: DemoNavItem[] = [
+  {
+    path: '/login-basics',
+    title: 'Signal model + field tree',
+    shortTitle: 'Basics',
+    eyebrow: 'Signal Forms',
+    summary: 'One signal model, a matching form tree, and two-way binding with [formField].',
+    accent: 'from-cyan-500 to-blue-600',
+  },
+  {
+    path: '/built-in-validation',
+    title: 'Built-in validators',
+    shortTitle: 'Validation',
+    eyebrow: 'Validation',
+    summary: 'Required, email, length, pattern, min, and max rules attached to typed paths.',
+    accent: 'from-emerald-500 to-teal-600',
+  },
+  {
+    path: '/custom-validator',
+    title: 'Custom validator',
+    shortTitle: 'Custom validator',
+    eyebrow: 'Validation',
+    summary: 'A small HTTPS-only rule that returns either null or a typed error object.',
+    accent: 'from-amber-500 to-orange-600',
+  },
+  {
+    path: '/field-logic',
+    title: 'Disable, hide, readonly',
+    shortTitle: 'Logic',
+    eyebrow: 'Form Logic',
+    summary: 'Reactive availability rules without effects, subscriptions, or manual DOM wiring.',
+    accent: 'from-fuchsia-500 to-rose-600',
+  },
+  {
+    path: '/password-match',
+    title: 'Cross-field password match',
+    shortTitle: 'Passwords',
+    eyebrow: 'Cross-field',
+    summary: 'A confirm-password field reads sibling value and state inside the schema.',
+    accent: 'from-indigo-500 to-violet-600',
+  },
+  {
+    path: '/budget-allocation',
+    title: 'Group validation with validateTree',
+    shortTitle: 'Budget',
+    eyebrow: 'Cross-field',
+    summary: 'A root-level rule validates that three allocations total exactly 100 percent.',
+    accent: 'from-lime-500 to-emerald-600',
+  },
+  {
+    path: '/reusable-schema',
+    title: 'Reusable schemas',
+    shortTitle: 'Reuse',
+    eyebrow: 'Schemas',
+    summary: 'Write the name rules once and apply them to two different form models.',
+    accent: 'from-sky-500 to-cyan-600',
+  },
+  {
+    path: '/conditional-schema',
+    title: 'Conditional rules on a union',
+    shortTitle: 'Conditional',
+    eyebrow: 'Schemas',
+    summary: 'applyWhenValue switches required fields when the payment method changes.',
+    accent: 'from-rose-500 to-red-600',
+  },
+  {
+    path: '/array-items',
+    title: 'Arrays with applyEach',
+    shortTitle: 'Arrays',
+    eyebrow: 'Schemas',
+    summary: 'Every new line item gets the same name and quantity rules automatically.',
+    accent: 'from-teal-500 to-green-600',
+  },
+  {
+    path: '/async-username',
+    title: 'Async username validation',
+    shortTitle: 'Async',
+    eyebrow: 'Async',
+    summary: 'validateAsync drives pending state while a simulated availability check runs.',
+    accent: 'from-blue-500 to-slate-700',
+  },
+  {
+    path: '/metadata-hints',
+    title: 'Reactive field metadata',
+    shortTitle: 'Metadata',
+    eyebrow: 'Metadata',
+    summary: 'A metadata key feeds live helper copy from the same form schema.',
+    accent: 'from-yellow-500 to-amber-600',
+  },
+  {
+    path: '/custom-control',
+    title: 'Custom star rating control',
+    shortTitle: 'Custom control',
+    eyebrow: 'Controls',
+    summary: 'A component implements FormValueControl and binds with the same [formField].',
+    accent: 'from-orange-500 to-pink-600',
+  },
+  {
+    path: '/submission',
+    title: 'Submission with FormRoot',
+    shortTitle: 'Submit',
+    eyebrow: 'Submission',
+    summary: 'FormRoot prevents default, calls submit(), marks touched, and tracks submitting.',
+    accent: 'from-violet-500 to-indigo-700',
+  },
+  {
+    path: '/server-errors',
+    title: 'Server errors on fields',
+    shortTitle: 'Server errors',
+    eyebrow: 'Submission',
+    summary: 'Returned server errors attach directly to the field that needs attention.',
+    accent: 'from-red-500 to-rose-700',
+  },
+  {
+    path: '/compat-form',
+    title: 'Reactive to Signal with compatForm',
+    shortTitle: 'compatForm',
+    eyebrow: 'Migration',
+    summary: 'An existing FormControl is proxied into a Signal Forms field tree.',
+    accent: 'from-stone-600 to-zinc-900',
+  },
+  {
+    path: '/signal-form-control',
+    title: 'SignalFormControl in a FormGroup',
+    shortTitle: 'Signal control',
+    eyebrow: 'Migration',
+    summary: 'A signal-backed control drops into an existing reactive FormGroup.',
+    accent: 'from-cyan-600 to-emerald-700',
+  },
+  {
+    path: '/template-migration',
+    title: 'Template-driven migration',
+    shortTitle: 'ngModel -> signal',
+    eyebrow: 'Migration',
+    summary: 'The same form shown with ngModel first, then signal model plus schema.',
+    accent: 'from-purple-500 to-sky-600',
+  },
+];
